@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Menu,
   X,
@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 
 import "./App.css";
 import Order from "./Order";
+import About from "./About";
 
 import desktopBackground from "./assets/backgrounds/desktop-bg.mp4";
 import mobileBackground from "./assets/backgrounds/mobile-bg.mp4";
@@ -29,8 +30,31 @@ function App() {
   const [showOrderPage, setShowOrderPage] = useState(false);
 
   /* =========================================================
-     ORDER PAGE
-     ========================================================= */
+    SCROLL INDICATOR
+    Hide immediately after user starts scrolling
+    ========================================================= */
+
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShowScrollIndicator(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  /* =========================================================
+    ORDER PAGE
+    ========================================================= */
 
   if (showOrderPage) {
     return (
@@ -51,12 +75,16 @@ function App() {
   }
 
   /* =========================================================
-     MAIN WEBSITE
-     ========================================================= */
+    MAIN WEBSITE
+    ========================================================= */
 
   return (
     <div className="app">
-      {/* Responsive Video Background */}
+
+      {/* =====================================================
+          RESPONSIVE VIDEO BACKGROUND
+          ===================================================== */}
+
       <div className="store-background">
         <video
           className="store-background-video"
@@ -82,9 +110,15 @@ function App() {
 
       <div className="background-overlay" />
 
-      {/* Header */}
+      {/* =====================================================
+          HEADER
+          ===================================================== */}
+
       <header className="site-header">
         <div className="navbar-shell">
+
+          {/* BRAND */}
+
           <a
             href="#home"
             className="brand"
@@ -107,6 +141,8 @@ function App() {
             </div>
           </a>
 
+          {/* DESKTOP NAVIGATION */}
+
           <nav
             className="desktop-nav"
             aria-label="मुख्य नेव्हिगेशन"
@@ -126,7 +162,10 @@ function App() {
             ))}
           </nav>
 
+          {/* HEADER ACTIONS */}
+
           <div className="header-actions">
+
             <a
               href="#contact"
               className="call-button"
@@ -151,7 +190,10 @@ function App() {
               <ShoppingBag size={17} />
               औषध ऑर्डर करा
             </button>
+
           </div>
+
+          {/* MOBILE MENU BUTTON */}
 
           <button
             type="button"
@@ -171,17 +213,31 @@ function App() {
               <Menu size={23} />
             )}
           </button>
+
         </div>
+
+        {/* ===================================================
+            MOBILE NAVIGATION
+            =================================================== */}
 
         {menuOpen && (
           <motion.div
             id="mobile-navigation"
             className="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25 }}
+            initial={{
+              opacity: 0,
+              y: -12,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.25,
+            }}
           >
             <nav aria-label="मोबाइल नेव्हिगेशन">
+
               {navItems.map((item) => (
                 <a
                   key={item.label}
@@ -192,6 +248,7 @@ function App() {
                   {item.label}
                 </a>
               ))}
+
             </nav>
 
             <button
@@ -210,22 +267,41 @@ function App() {
               <ShoppingBag size={18} />
               औषध ऑर्डर करा
             </button>
+
           </motion.div>
         )}
+
       </header>
 
-      {/* Hero */}
-      <main id="home" className="hero-section">
+      {/* =====================================================
+          HERO
+          ===================================================== */}
+
+      <main
+        id="home"
+        className="hero-section"
+      >
+
         <div className="hero-container">
+
+          {/* HERO CONTENT */}
+
           <motion.div
             className="hero-content"
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.85,
               ease: "easeOut",
             }}
           >
+
             <div className="hero-badge">
               <span className="badge-dot" />
               आपल्या आरोग्याचा विश्वास
@@ -233,7 +309,9 @@ function App() {
 
             <h1 className="hero-title">
               धनदाई मेडीकल
-              <span>अँड जनरल स्टोअर</span>
+              <span>
+                अँड जनरल स्टोअर
+              </span>
             </h1>
 
             <p className="hero-description">
@@ -243,6 +321,9 @@ function App() {
             </p>
 
             <div className="hero-actions">
+
+              {/* ORDER BUTTON */}
+
               <button
                 type="button"
                 className="hero-order-button"
@@ -259,6 +340,8 @@ function App() {
                 औषध ऑर्डर करा
               </button>
 
+              {/* CONTACT BUTTON */}
+
               <a
                 href="#contact"
                 className="hero-contact-button"
@@ -266,42 +349,80 @@ function App() {
                 <Phone size={18} />
                 संपर्क करा
               </a>
+
             </div>
+
           </motion.div>
 
-          {/* Floating Logo */}
+          {/* =================================================
+              FLOATING LOGO
+              ================================================= */}
+
           <motion.div
             className="hero-logo-area"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
             transition={{
               duration: 0.8,
               delay: 0.2,
               ease: "easeOut",
             }}
           >
+
             <div className="logo-orbit">
+
               <div className="logo-glass">
+
                 <img
                   src={logo}
                   alt="धनदाई मेडीकल अँड जनरल स्टोअर"
                   className="hero-main-logo"
                 />
+
               </div>
+
             </div>
+
           </motion.div>
+
         </div>
 
-        <a
-          href="#about"
-          className="scroll-indicator"
-          aria-label="खाली स्क्रोल करा"
-        >
-          <Mouse size={24} strokeWidth={1.5} />
-          <span>खाली स्क्रोल करा</span>
-          <ChevronDown size={17} />
-        </a>
+        {/* ===================================================
+            SCROLL INDICATOR
+            Hidden after first scroll
+            =================================================== */}
+
+        {showScrollIndicator && (
+          <a
+            href="#about"
+            className="scroll-indicator"
+            aria-label="खाली स्क्रोल करा"
+          >
+            <Mouse
+              size={24}
+              strokeWidth={1.5}
+            />
+
+            <span>
+              खाली स्क्रोल करा
+            </span>
+
+            <ChevronDown size={17} />
+          </a>
+        )}
+
       </main>
+
+      {/* =====================================================
+          ABOUT SECTION
+          ===================================================== */}
+
+      <About />
+
     </div>
   );
 }
