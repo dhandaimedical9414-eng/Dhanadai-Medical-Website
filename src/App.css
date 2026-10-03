@@ -1210,36 +1210,23 @@
 
 
 
-  .hero-container {
+.hero-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: 6px;
+}
 
-    display: flex;
+.hero-logo-area {
+  justify-content: flex-end;
+  padding-right: 8px;
+  min-height: 0;
+}
 
-    flex-direction: column-reverse;
-
-    align-items: stretch;
-
-    gap: 17px;
-
-  }
-
-
-
-  .hero-logo-area {
-
-    justify-content: flex-end;
-
-    padding-right: 8px;
-
-  }
-
-
-
-  .logo-orbit {
-
-    width: clamp(185px, 55vw, 270px);
-    aspect-ratio: 1;
-
-  }
+.logo-orbit {
+  width: 135px;
+  aspect-ratio: 1;
+}
 
 
 

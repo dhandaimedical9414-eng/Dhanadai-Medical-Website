@@ -33,6 +33,7 @@ function About() {
           <h2>
             <span>आपल्या आरोग्यासाठी एक विश्वासू साथ</span>
           </h2>
+          
 
           <p>
             आपल्या परिसरातील आरोग्यसेवेत विश्वास, गुणवत्ता
@@ -195,34 +196,7 @@ function About() {
             STORE ADDRESS
             ========================================= */}
 
-        <motion.a
-          href="https://maps.app.goo.gl/phryrK1KCemYqkadA"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="about-address-card"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          aria-label="Google Maps वर धनदाई मेडीकलचे ठिकाण उघडा"
-        >
-          <div className="about-address-icon">
-            <MapPin size={24} />
-          </div>
 
-          <div className="about-address-content">
-            <span>आमचे दुकान</span>
-
-            <strong>
-              धनदाई मेडीकल
-            </strong>
-
-            <p>
-              सावारिया आईस्क्रीम समोर, पारोळा रोड,
-              धुळे – ४२४००१
-            </p>
-          </div>
-        </motion.a>
 
         {/* Bottom Message */}
         <motion.div
@@ -232,13 +206,7 @@ function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span />
 
-          <p>
-            तुमचा विश्वास हीच आमची खरी ताकद.
-          </p>
-
-          <span />
         </motion.div>
 
       </div>
